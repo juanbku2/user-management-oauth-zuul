@@ -1,0 +1,17 @@
+server:
+  port: 8080
+
+zuul:
+  ignored-headers: Access-Control-Allow-Credentials, Access-Control-Allow-Origin
+  sensitiveHeaders: Cookie,Set-Cookie
+  routes:
+    user-management:
+      path: /users/**
+      url: http://192.168.0.8:8081/users
+    oauth:
+      path: /login/**
+      url: http://192.168.0.8:9000/oauth/token
+
+security:
+  jwt:
+    public-key: classpath:public.txt
